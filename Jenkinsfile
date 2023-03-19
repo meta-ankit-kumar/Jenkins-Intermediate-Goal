@@ -38,7 +38,7 @@ pipeline {
 
 		stage('Send Post-Build Email Notification') {
             steps {
-                sh 'echo "Your build has finished" | mail -s "Build Finished" ankit.kumar@.com'
+                sh 'echo "Your build has finished" | mail -s "Build Finished" ankit.kumar@metacube.com'
             }
         }
     }
