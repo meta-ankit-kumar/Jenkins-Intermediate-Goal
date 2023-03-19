@@ -10,6 +10,12 @@ pipeline {
     		}
 		}
 
+		stage('Send Pre-Build Email Notification') {
+            steps {
+                sh 'echo "Your build is starting now" | mail -s "Build Started" ankit.kumar@metacube.com'
+            }
+        }
+
         
         stage('Build') {
             agent {
@@ -27,6 +33,12 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'npm run deploy'
+            }
+        }
+
+		stage('Send Post-Build Email Notification') {
+            steps {
+                sh 'echo "Your build has finished" | mail -s "Build Finished" ankit.kumar@.com'
             }
         }
     }
