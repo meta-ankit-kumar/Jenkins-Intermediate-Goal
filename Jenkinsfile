@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
     		steps {
     		    withCredentials([string(credentialsId: 'git-access-token', variable: 'PAT')]) {
-    		        git branch: 'main', url: 'https://$PAT@github.com/meta-ankit-kumar/Jenkins-Intermediate-Goal.git'
+    		        git branch: 'main', url: 'https://${PAT}@github.com/meta-ankit-kumar/Jenkins-Intermediate-Goal.git'
     		    }
     		}
 		}
