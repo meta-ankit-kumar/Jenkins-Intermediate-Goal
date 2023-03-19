@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
     		steps {
-    		    withCredentials([secretText(credentialsId: 'git-access-token', token: 'PAT')]) {
+    		    withCredentials([string(credentialsId: 'git-access-token', variable: 'PAT')]) {
     		        git branch: 'main', url: 'https://PAT@github.com/meta-ankit-kumar/Jenkins-Intermediate-Goal.git'
     		    }
     		}
