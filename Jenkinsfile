@@ -29,6 +29,7 @@ pipeline {
                 sh 'npm run deploy'
             }
         }
+	}
 
 		post {
         always {
