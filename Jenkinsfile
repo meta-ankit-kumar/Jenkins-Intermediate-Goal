@@ -10,12 +10,6 @@ pipeline {
     		}
 		}
 
-		stage('Send Pre-Build Email Notification') {
-            steps {
-                sh 'echo "Your build is starting now" | mail -s "Build Started" ankit.kumar@metacube.com'
-            }
-        }
-
         
         stage('Build') {
             agent {
@@ -36,10 +30,31 @@ pipeline {
             }
         }
 
-		stage('Send Post-Build Email Notification') {
-            steps {
-                sh 'echo "Your build has finished" | mail -s "Build Finished" ankit.kumar@metacube.com'
+		post {
+        always {
+            script {
+                mail subject: 'My Jenkins Pipeline Run',
+                     body: 'My Jenkins Pipeline has finished running.',
+                     from: 'dev.ankit029@gmail.com',
+                     to: 'ankit.kumar@metacube.com'
             }
         }
+        success {
+            script {
+                mail subject: 'My Jenkins Pipeline Succeeded',
+                     body: 'My Jenkins Pipeline has succeeded.',
+                     from: 'dev.ankit029@gmail.com',
+                     to: 'ankit.kumar@metacube.com'
+            }
+        }
+        failure {
+            script {
+                mail subject: 'My Jenkins Pipeline Failed',
+                     body: 'My Jenkins Pipeline has failed.',
+                     from: 'dev.ankit029@gmail.com',
+                     to: 'ankit.kumar@metacube.com'
+            }
+        }
+    }
     }
 }
