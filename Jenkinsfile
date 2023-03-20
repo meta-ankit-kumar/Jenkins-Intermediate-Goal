@@ -2,6 +2,14 @@ pipeline {
     agent any
     
     stages {
+
+		stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+
+
         stage('Checkout') {
     		steps {
                 git branch: 'main', url: "https://github.com/meta-ankit-kumar/Jenkins-Intermediate-Goal.git",
@@ -11,21 +19,19 @@ pipeline {
 
         
         stage('Build') {
-            agent {
-                docker { 
-                    image 'my-docker-image' 
-                    args '-u root'
-                }
-            }
             
             steps {
-                sh 'npm install'
-            }
+				dir('Jenkins-Intermediate-Goal') {
+                    sh 'npm install'
+                }
+			}
         }
         
         stage('Deploy') {
             steps {
-                sh 'npm run deploy'
+                dir('Jenkins-Intermediate-Goal') {
+                    sh 'npm deploy'
+                }
             }
         }
 	}
