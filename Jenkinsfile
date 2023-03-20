@@ -19,19 +19,14 @@ pipeline {
 
         
         stage('Build') {
-            
             steps {
-				dir('Jenkins-Intermediate-Goal') {
-                    sh 'npm install'
-                }
+                sh 'npm install'
 			}
         }
         
         stage('Deploy') {
             steps {
-                dir('Jenkins-Intermediate-Goal') {
-                    sh 'npm deploy'
-                }
+                sh 'npm run deploy'
             }
         }
 	}
