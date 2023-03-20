@@ -8,6 +8,16 @@ pipeline {
     
     stages {
 
+		stage('Pre-Build Email') {
+            steps {
+                script {
+                    mail subject: 'My Jenkins Pipeline Started',
+                         body: "My Jenkins Pipeline has started. Click the following link to view the build status: ${env.BUILD_URL}",
+                         from: "${FROM}",
+                         to: "${TO}"
+                }
+            }
+        }
 		stage('Clean Workspace') {
             steps {
                 cleanWs()
