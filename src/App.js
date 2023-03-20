@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Jenkins Intermediate Goal
+          Testing jenkins job
         </p>
         <a
           className="App-link"
