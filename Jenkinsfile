@@ -36,29 +36,29 @@ pipeline {
         }
 	}
 
-		post {
+	post {
         always {
             script {
                 mail subject: 'My Jenkins Pipeline Run',
-                     body: 'My Jenkins Pipeline has finished running.',
-                     from: "${FROM}",
-                     to: "${TO}"
+                    body: "My Jenkins Pipeline has finished running. Build link: ${env.BUILD_URL}",
+                    from: "${FROM}",
+                    to: "${TO}"
             }
         }
         success {
             script {
                 mail subject: 'My Jenkins Pipeline Succeeded',
-                     body: 'My Jenkins Pipeline has succeeded.',
-                     from: "${FROM}",
-                     to: "${TO}"
+                    body: "My Jenkins Pipeline has succeeded. Build link: ${env.BUILD_URL}",
+                    from: "${FROM}",
+                    to: "${TO}"
             }
         }
         failure {
             script {
                 mail subject: 'My Jenkins Pipeline Failed',
-                     body: 'My Jenkins Pipeline has failed.',
-                     from: "${FROM}",
-                     to: "${TO}"
+                    body: "My Jenkins Pipeline has failed. Build link: ${env.BUILD_URL}",
+                    from: "${FROM}",
+                    to: "${TO}"
             }
         }
     }
