@@ -2,7 +2,7 @@ pipeline {
     agent any
 
 	environment {
-        FROM=env.FROM_EMAIL,
+        FROM=env.FROM_EMAIL
 		TO=env.TO_EMAIL
     }
     
