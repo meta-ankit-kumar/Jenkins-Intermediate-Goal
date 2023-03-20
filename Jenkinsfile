@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+	environment {
+        FROM = env.FROM_EMAIL
+		TO = env.TO_EMAIL
+    }
     
     stages {
 
@@ -36,24 +41,24 @@ pipeline {
             script {
                 mail subject: 'My Jenkins Pipeline Run',
                      body: 'My Jenkins Pipeline has finished running.',
-                     from: 'dev.ankit029@gmail.com',
-                     to: 'ankit.kumar@metacube.com'
+                     from: "${FROM}",
+                     to: "${TO}"
             }
         }
         success {
             script {
                 mail subject: 'My Jenkins Pipeline Succeeded',
                      body: 'My Jenkins Pipeline has succeeded.',
-                     from: 'dev.ankit029@gmail.com',
-                     to: 'ankit.kumar@metacube.com'
+                     from: "${FROM}",
+                     to: "${TO}"
             }
         }
         failure {
             script {
                 mail subject: 'My Jenkins Pipeline Failed',
                      body: 'My Jenkins Pipeline has failed.',
-                     from: 'dev.ankit029@gmail.com',
-                     to: 'ankit.kumar@metacube.com'
+                     from: "${FROM}",
+                     to: "${TO}"
             }
         }
     }
